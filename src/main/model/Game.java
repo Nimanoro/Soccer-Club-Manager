@@ -58,4 +58,12 @@ public class Game {
         }
 
     }
+
+    public Team getT2() {
+        return this.t2;
+    }
+
+    public Predefinedteams getT1() {
+        return this.t1;
+    }
 }
