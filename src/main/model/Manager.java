@@ -16,18 +16,22 @@ public class Manager {
 
 
     public String getName() {
+
         return this.name;
     }
 
     public Integer getCoin() {
+
         return this.coin;
     }
 
     public void addCoin(int amount) {
+
         this.coin = this.getCoin() + amount;
     }
 
     public void subCoin(int amount) {
+
         this.coin = this.getCoin() - amount;
     }
 }
