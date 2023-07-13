@@ -2,10 +2,12 @@ package model;
 
 public class Player {
     private int star;
-    private Manager m;
+    Manager m1;
 
-    public Player() {
-        star = 1;
+    public Player(Manager m,int star) {
+        this.star = star;
+        this.m1 = m;
+
 
     }
 
@@ -18,10 +20,13 @@ public class Player {
         return star;
     }
 
+    public Manager getM1() {
+        return m1;
+    }
 
     public void improvePlayer() {
         this.star++;
-        m.subCoin(100);
+        m1.subCoin(100);
     }
 
 }

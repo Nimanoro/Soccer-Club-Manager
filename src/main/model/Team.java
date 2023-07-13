@@ -1,13 +1,26 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Set;
 
-public class Team {
+public class Team extends Predefinedteams {
     private ArrayList<Player> players = new ArrayList<Player>();
+    private Integer point;
+    Manager manager;
 
-    public Team() {
+    public Team(Manager m1) {
+        super();
+        this.manager = m1;
+        this.point = 0;
+    }
 
+    @Override
+    public int getPoint() {
+        return this.point;
+    }
+
+    @Override
+    public void updatePoints(int amount) {
+        this.point = this.point + amount;
     }
 
     public void addPlayer(Player p1) {
@@ -18,7 +31,8 @@ public class Team {
         return this.players;
     }
 
-    public double overall() {
+    @Override
+    public double getOverall() {
         int i = 0;
         double result = 0;
         while (players.size() > i) {
@@ -27,6 +41,10 @@ public class Team {
             i++;
         }
         return result / players.size();
+    }
+
+    public Manager getManager() {
+        return this.manager;
     }
 
 }
