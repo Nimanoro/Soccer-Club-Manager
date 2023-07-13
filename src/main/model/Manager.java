@@ -1,4 +1,4 @@
 package model;
 
-public class Manager 1
+public class Manager {
 }
