@@ -13,15 +13,6 @@ public class Team extends Predefinedteams {
         this.point = 0;
     }
 
-    @Override
-    public int getPoint() {
-        return this.point;
-    }
-
-    @Override
-    public void updatePoints(int amount) {
-        this.point = this.point + amount;
-    }
 
     public void addPlayer(Player p1) {
         this.players.add(p1);
