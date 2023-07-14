@@ -3,8 +3,10 @@ package model;
 public class Predefinedteams {
     private int overall;
     private int points;
+    private String name;
 
-    public Predefinedteams() {
+    public Predefinedteams(String n) {
+        this.name = n;
 
     }
 
@@ -22,5 +24,9 @@ public class Predefinedteams {
 
     public void updatePoints(int amount) {
         this.points = this.points + amount;
+    }
+
+    public String getName() {
+        return this.name;
     }
 }

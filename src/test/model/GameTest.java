@@ -20,8 +20,8 @@ public class GameTest {
 
     @BeforeEach
     public void setup() {
-        t1 = new Predefinedteams();
-        t3 = new Predefinedteams();
+        t1 = new Predefinedteams("AFC");
+        t3 = new Predefinedteams("EU");
         m1 = new Manager();
         t2 = new Team(m1);
         t1.setOverall(4);
@@ -39,9 +39,9 @@ public class GameTest {
     }
 
     //@Test
-    // public void TestGetResult() {
-    //    assertEquals(g1.generateResult(), "4-3");
-    //    assertEquals(g2.generateResult(), "4-3");
+     //public void TestGetResult() {
+     //   assertEquals(g1.generateResult(), "4-3");
+     //   assertEquals(g2.generateResult(), "4-3");
     //}
 
     @Test

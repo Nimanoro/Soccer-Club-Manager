@@ -8,7 +8,7 @@ public class Team extends Predefinedteams {
     Manager manager;
 
     public Team(Manager m1) {
-        super();
+        super("Dream Team");
         this.manager = m1;
         this.point = 0;
     }

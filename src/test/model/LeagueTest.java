@@ -19,11 +19,11 @@ public class LeagueTest {
 
     @BeforeEach
     public void setup() {
-        t1 = new Predefinedteams();
-        t2 = new Predefinedteams();
-        t3 = new Predefinedteams();
-        t4 = new Predefinedteams();
-        t5 = new Predefinedteams();
+        t1 = new Predefinedteams("AFC");
+        t2 = new Predefinedteams("Milan");
+        t3 = new Predefinedteams("BArcelona");
+        t4 = new Predefinedteams("Real Madrid");
+        t5 = new Predefinedteams("BVB");
         t1.updatePoints(5);
         t2.updatePoints(6);
         t3.updatePoints(7);
@@ -64,5 +64,8 @@ public class LeagueTest {
         list2.add(t5);
 
         assertEquals(l1.getTeams(), list2);
+
+
+
     }
 }

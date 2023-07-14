@@ -19,11 +19,11 @@ public class FixtureTest {
     public void setup() {
         m1 = new Manager();
         t1 = new Team(m1);
-        t2 = new Predefinedteams();
+        t2 = new Predefinedteams("AFC");
         t2.setOverall(1);
-        t3 = new Predefinedteams();
-        t4 = new Predefinedteams();
-        t5 = new Predefinedteams();
+        t3 = new Predefinedteams("EU");
+        t4 = new Predefinedteams("Milan");
+        t5 = new Predefinedteams("aston Villa");
         f1 = new Fixture(t1);
     }
 
