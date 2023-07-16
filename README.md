@@ -22,4 +22,3 @@ enjoy a competition against pre-defined opponents in the league.
 - As a user, I want to be able to visit my placement in the league competition.
 - As a user, I want to be able to update my players' strength by leveling it up.
 - As a user, I want to be able to see my coin inventory.
-- As a user, I want to be able to substitute a player from the bench to my starting formation.
