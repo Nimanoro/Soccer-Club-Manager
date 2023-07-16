@@ -1,9 +1,6 @@
 package model;
 
 import java.util.Random;
-import java.util.StringJoiner;
-
-import static java.lang.Math.random;
 
 public class Game {
     private Predefinedteams t1;
@@ -65,5 +62,13 @@ public class Game {
 
     public Predefinedteams getT1() {
         return this.t1;
+    }
+
+    public int getGoal1() {
+        return goal1;
+    }
+
+    public int getGoal2() {
+        return goal2;
     }
 }
