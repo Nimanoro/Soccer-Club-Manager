@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GameTest {
     Game g1;
@@ -38,11 +39,13 @@ public class GameTest {
         g2 = new Game(t3,t2);
     }
 
-    //@Test
-     //public void TestGetResult() {
-     //   assertEquals(g1.generateResult(), "4-3");
-     //   assertEquals(g2.generateResult(), "4-3");
-    //}
+    @Test
+     public void TestGeneralResult() {
+        g1.generateResult();
+        assertTrue((0 < (g1.getGoal1())) && (g1.getGoal1() <= 8));
+        assertTrue((-1 < (g2.getGoal1())) && (g2.getGoal1() <= 3));
+
+    }
 
     @Test
     public void TestUpdatePoints() {
@@ -78,6 +81,28 @@ public class GameTest {
         g1.updateCoins();
         assertEquals(t2.getManager().getCoin(),175);
     }
+
+    @Test
+    public void GetT2() {
+        assertEquals(g1.getT2().getName(), "Dream Team" );
+        assertEquals(g1.getT1().getName(), "AFC" );
+    }
+
+    @Test
+    public void GetGoal1() {
+        g1.setGoal1(1);
+        g1.setGoal2(2);
+        assertEquals(g1.getGoal1(),1);
+    }
+
+    @Test
+    public void GetGoal2() {
+        g1.setGoal2(2);
+        assertEquals(g1.getGoal2(),2);
+
+    }
+
+
 
 
 
