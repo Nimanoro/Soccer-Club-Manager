@@ -262,6 +262,7 @@ public class MainGame {
 
     }
 
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void processCommandUpdate(String response, Player player) {
         if (response.equals("y")) {
             if (manager.getCoin() >= 10) {
