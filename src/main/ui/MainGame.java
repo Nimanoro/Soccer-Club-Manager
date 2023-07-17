@@ -25,6 +25,11 @@ public class MainGame {
     private Predefinedteams t3;
     private Predefinedteams t4;
     private Predefinedteams t5;
+    private Predefinedteams t6;
+    private Predefinedteams t7;
+    private Predefinedteams t8;
+    private Predefinedteams t9;
+
     private League league;
     private Fixture fixture;
     private Scanner input;
@@ -161,6 +166,15 @@ public class MainGame {
         t4.setOverall(4);
         t5 = new Predefinedteams("Tottenham");
         t5.setOverall(3);
+        t6 = new Predefinedteams("Atlanta");
+        t6.setOverall(2);
+        t7 = new Predefinedteams("Malavan FC");
+        t7.setOverall(1);
+        t8 = new Predefinedteams("PSG");
+        t8.setOverall(4);
+        t9 = new Predefinedteams("BVB");
+        t9.setOverall(2);
+
     }
 
     private void makeLeague() {
@@ -171,6 +185,10 @@ public class MainGame {
         list.add(t3);
         list.add(t4);
         list.add(t5);
+        list.add(t6);
+        list.add(t7);
+        list.add(t8);
+        list.add(t9);
         list.add(team);
         league.setTeams(list);
     }
@@ -182,6 +200,10 @@ public class MainGame {
         fixture.addPreDTeams(t3);
         fixture.addPreDTeams(t4);
         fixture.addPreDTeams(t5);
+        fixture.addPreDTeams(t6);
+        fixture.addPreDTeams(t7);
+        fixture.addPreDTeams(t8);
+        fixture.addPreDTeams(t9);
         fixture.setGames();
     }
 
@@ -229,28 +251,42 @@ public class MainGame {
 
     public void updatePlayer() {
         input = new Scanner(System.in);
-        System.out.println("Enter the number of the player you want to update (cost: 100 coin)");
+        System.out.println("Enter the number of the player you want to update (cost: 10 coin)");
+        System.out.println("Your coin:" + Integer.toString(manager.getCoin()));
         Integer number = input.nextInt();
         Player player = team.getPlayers().get(number);
         System.out.println(player.getName());
         System.out.println("Do you want to update this player? y/n");
         String response = input.next();
+        processCommandUpdate(response, player);
+
+    }
+
+    public void processCommandUpdate(String response, Player player) {
         if (response.equals("y")) {
-            if (manager.getCoin() >= 100) {
-                player.improvePlayer();
-                System.out.println(player.getName() + " was updated");
-                System.out.println("Current Stars " + player.getName() + ":" + player.getStar());
-                wait(2000);
-                showSquad();
+            if (manager.getCoin() >= 10) {
+                if (player.improvePlayer()) {
+                    System.out.println(player.getName() + " was updated");
+                    System.out.println("Current Stars " + player.getName() + ":" + player.getStar());
+                    showSquad();
+                } else if (!player.improvePlayer()) {
+                    System.out.println("This player is maxed out");
+                } else {
+                    Integer missing;
+                    missing = (10 - manager.getCoin());
+                    System.out.println("You don't have enough coin to update this player.");
+                    System.out.println("You need " + Integer.toString(missing) + " coins");
+                    wait(2000);
+                    showSquad();
+                }
+            } else if (response.equals("n")) {
+                updatePlayer();
+            } else if (response.equals("q")) {
+                updatePlayer();
             } else {
-                System.out.println("You don't have enough coin to update this player.");
+                System.out.println("Invalid Statement... Back to Squad menu!");
                 showSquad();
             }
-        } else if (response.equals("n")) {
-            updatePlayer();
-        } else {
-            System.out.println("Invalid Statement... Back to Squad menu!");
-            showSquad();
         }
     }
 
@@ -264,7 +300,8 @@ public class MainGame {
     private void startGame() {
         fixture.setGames();
         Game game1 = fixture.getGames().get(week);
-        System.out.println("This week game is " + game1.getT1().getName() + " VS " + game1.getT2().getName());
+        System.out.println("Week " + Integer.toString(week + 1));
+        System.out.println("This is " + game1.getT1().getName() + " VS " + game1.getT2().getName());
         wait(5000);
         game1.generateResult();
         game1.updatePoints();

@@ -26,9 +26,14 @@ public class Player {
         return m1;
     }
 
-    public void improvePlayer() {
-        this.star++;
-        m1.subCoin(100);
+    public Boolean improvePlayer() {
+        if (this.star < 5) {
+            this.star++;
+            m1.subCoin(10);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public String getName() {
