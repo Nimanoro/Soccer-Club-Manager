@@ -2,6 +2,9 @@ package model;
 
 import java.util.Random;
 
+
+// This class is made to make the game and produce its result. It contains four fields
+// Team, Predefined team, goal1, goal2.
 public class Game {
     private Predefinedteams t1;
     private Team t2;
@@ -14,6 +17,12 @@ public class Game {
         this.t2 = t2;
     }
 
+    /*
+
+     * MODIFIES: this
+     * EFFECTS:Generate the result of the game based on the strengh of the
+     * competing teams.
+     */
     public String generateResult() {
         int difference = (int) (t1.getOverall() - t2.getOverall());
         Random rand = new Random();
@@ -34,6 +43,12 @@ public class Game {
         this.goal2 = g2;
     }
 
+
+    /*
+    * MODIFIES: Team, Predefined Team
+    * EFFECTS:Update the points of the competing teams based on the result of the game
+    *
+            */
     public void updatePoints() {
         if (this.goal1 > this.goal2) {
             t1.updatePoints(3);
@@ -45,6 +60,12 @@ public class Game {
         }
     }
 
+    /*
+     * MODIFIES: Manager
+     * EFFECTS:Update the coins of the manager based on the result of the game
+     * 100 for win, 25 for loss, 50 for tie
+     *
+     */
     public void updateCoins() {
         if (this.goal1 > this.goal2) {
             t2.getManager().addCoin(25);

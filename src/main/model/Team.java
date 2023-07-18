@@ -2,6 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
+
+// This class is made to make the user's team. It contains three fields
+// Player, point and manager.
 public class Team extends Predefinedteams {
     private ArrayList<Player> players = new ArrayList<Player>();
     private Integer point;
@@ -22,6 +25,9 @@ public class Team extends Predefinedteams {
         return this.players;
     }
 
+    /*
+     * EFFECTS:Get the overall of the team based on the power of the players.
+     */
     @Override
     public double getOverall() {
         int i = 0;

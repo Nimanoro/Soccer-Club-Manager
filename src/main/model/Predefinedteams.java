@@ -1,5 +1,7 @@
 package model;
 
+// This class is made to make the predefined teams. It contains three fields
+// Overall, points and the team name.
 public class Predefinedteams {
     private int overall;
     private int points;
@@ -22,6 +24,11 @@ public class Predefinedteams {
         return this.points;
     }
 
+    /*Requires: positive Int
+     * MODIFIES: this
+     * EFFECTS:update the points of the Predefined team by the given amount
+     *
+     */
     public void updatePoints(int amount) {
         this.points = this.points + amount;
     }

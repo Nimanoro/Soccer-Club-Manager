@@ -5,6 +5,8 @@ import model.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+// This class is made to make the CLI ui of the game.
 public class MainGame {
 
     private Manager manager;
@@ -40,6 +42,7 @@ public class MainGame {
         runMain();
     }
 
+    //EFFECTS: Start the game
     private void runMain() {
         boolean keepGoing = true;
         String command = null;
@@ -61,6 +64,8 @@ public class MainGame {
         System.out.println("Thanks for playing! Bye bye!");
     }
 
+    //EFFECTS: It is the main menu of the game that keep getting commands
+    // from the user.
     private void mainMenu() {
         boolean keepGoing = true;
         String command = null;
@@ -80,6 +85,7 @@ public class MainGame {
         System.out.println("Goodbye!");
     }
 
+    //EFFECTS: Printing out the options of the main menu.
     private void displayMainMenu() {
         System.out.println("\nselect from:");
         System.out.println("start game");
@@ -90,6 +96,7 @@ public class MainGame {
 
     }
 
+    //EFFECTS: Produce the related response to the command entered by the user.
     private void processCommandMain(String command) {
         if (command.equals("s")) {
             startGame();
@@ -102,6 +109,8 @@ public class MainGame {
         }
     }
 
+    //MODIFIES: Manager, Player, Team, PredefinedTeam, League, Fixture
+    //EFFECTS: Set up the starting environment of th game.
     private void init() {
         System.out.println("Enter your username");
         String name = null;
@@ -117,6 +126,8 @@ public class MainGame {
 
     }
 
+    //EFFECTS: Set up the starting schedule of the team.
+    // Modifies: Player, Team
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void makePlayers(Manager m) {
         p1 = new Player(m, 1);
@@ -155,6 +166,8 @@ public class MainGame {
         team.addPlayer(p11);
     }
 
+    //EFFECTS: Set up the default predefined teams
+    //MODIFIES: Predefinedteams
     private void makePredefinedTeams() {
         t1 = new Predefinedteams("Arsenal");
         t1.setOverall(2);
@@ -177,6 +190,8 @@ public class MainGame {
 
     }
 
+    //EFFECTS: Set up the starting status of the league.
+    //MODIFIES: League
     private void makeLeague() {
         league = new League();
         ArrayList<Predefinedteams> list = new ArrayList<Predefinedteams>();
@@ -193,6 +208,8 @@ public class MainGame {
         league.setTeams(list);
     }
 
+    // EFFECTS: Make the schedule of the game for the team.
+    //MODIFIES: Fixture
     private void makeFixture() {
         fixture = new Fixture(team);
         fixture.addPreDTeams(t1);
@@ -207,6 +224,8 @@ public class MainGame {
         fixture.setGames();
     }
 
+    //MODIFIES: League
+    //EFFECTS: Sort the teams based on their point and print their standing.
     private void showStanding() {
         league.sortTeams();
         for (int i = 0; i < league.getTeams().size(); i++) {
@@ -215,7 +234,7 @@ public class MainGame {
         }
     }
 
-
+    //EFFECTS: Print out the players in the squad and run the squad menu
     private void showSquad() {
         boolean keepGoing = true;
         String command = null;
@@ -242,6 +261,7 @@ public class MainGame {
 
     }
 
+    //EFFECTS: Process the command in the squad menu.
     public void processCommandSquad(String command) {
         if (command.equals("update")) {
             updatePlayer();
@@ -249,6 +269,9 @@ public class MainGame {
 
     }
 
+    //EFFECTS: Add a start to player and deduct 10 coin from the manager coin inventory if the manager
+    //coin inventory is enough to take this action.
+    //MODIFIES: player, Manager
     public void updatePlayer() {
         input = new Scanner(System.in);
         System.out.println("Enter the number of the player you want to update (cost: 10 coin)");
@@ -262,6 +285,7 @@ public class MainGame {
 
     }
 
+    // Process the command in the update menu
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void processCommandUpdate(String response, Player player) {
         if (response.equals("y")) {
@@ -291,13 +315,16 @@ public class MainGame {
         }
     }
 
-
+// EFFECTS: print out the options of the squad menu
     public void displaySquadMenu() {
         System.out.println("update for updating your players");
         System.out.println("Q for going back to the main menu");
     }
 
-
+    //EFFECTS: Generate the result of a game. add the points based on the result to both sides, add
+    // the coins to the user account based on the result and
+    // change the state of the game to a week later.
+    //MODIFIES:
     private void startGame() {
         fixture.setGames();
         Game game1 = fixture.getGames().get(week);
@@ -323,6 +350,7 @@ public class MainGame {
         wait(5000);
     }
 
+    //EFFECTS:constructor of the wait method.
     public static void wait(int ms) {
         try {
             Thread.sleep(ms);

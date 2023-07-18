@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 
+// This class is made to make the league standing. It holds all the team + Predefined teams as it field.
 public class League {
     ArrayList<Predefinedteams> teams = new ArrayList<Predefinedteams>();
     ArrayList<Predefinedteams> standing = new ArrayList<Predefinedteams>();
@@ -12,6 +13,11 @@ public class League {
         this.teams = l1;
     }
 
+    /*
+     * MODIFIES: League
+     * EFFECTS:Update the standing based on the competing teams point.
+     *
+     */
     public void sortTeams() {
         for (int i = 1; i < this.teams.size(); i++) {
             Predefinedteams key = this.teams.get(i);
