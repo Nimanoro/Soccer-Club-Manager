@@ -88,7 +88,7 @@ public class MainGame {
     //EFFECTS: Printing out the options of the main menu.
     private void displayMainMenu() {
         System.out.println("\nselect from:");
-        System.out.println("start game");
+        System.out.println("start for start game");
         System.out.println("squad");
         System.out.println("standing");
         System.out.println("Quit");
@@ -98,7 +98,7 @@ public class MainGame {
 
     //EFFECTS: Produce the related response to the command entered by the user.
     private void processCommandMain(String command) {
-        if (command.equals("s")) {
+        if (command.equals("start")) {
             startGame();
         } else if (command.equals("squad")) {
             showSquad();
@@ -265,8 +265,23 @@ public class MainGame {
     public void processCommandSquad(String command) {
         if (command.equals("update")) {
             updatePlayer();
+        } else if (command.equals("new")) {
+            newPlayer();
         }
+    }
 
+    public void newPlayer() {
+        String command = null;
+        System.out.println("Enter the name of the new player: Cost 100");
+        input = new Scanner(System.in);
+        command = input.next();
+        if (team.makePlayer(command,manager)) {
+            System.out.println("New player was made. You can view him in your squad!");
+        } else {
+            System.out.println("You do not have enough coin to make a new player. Try again later!");
+        }
+        wait(1000);
+        showSquad();
     }
 
     //EFFECTS: Add a start to player and deduct 10 coin from the manager coin inventory if the manager
@@ -318,6 +333,7 @@ public class MainGame {
 // EFFECTS: print out the options of the squad menu
     public void displaySquadMenu() {
         System.out.println("update for updating your players");
+        System.out.println("new for adding a customized player to your squad");
         System.out.println("Q for going back to the main menu");
     }
 

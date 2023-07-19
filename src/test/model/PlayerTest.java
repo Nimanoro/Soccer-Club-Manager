@@ -59,4 +59,5 @@ public class PlayerTest {
         p1.setName("amin");
         assertEquals(p1.getName(), "amin");
     }
+
 }

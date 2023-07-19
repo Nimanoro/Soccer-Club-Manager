@@ -40,6 +40,21 @@ public class Team extends Predefinedteams {
         return result / players.size();
     }
 
+    public Boolean makePlayer(String name, Manager manager) {
+        if (manager.getCoin() >= 100) {
+            Player p1;
+
+            p1 = new Player(manager, 1);
+            manager.subCoin(100);
+            p1.setName(name);
+            addPlayer(p1);
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
     public Manager getManager() {
         return this.manager;
     }

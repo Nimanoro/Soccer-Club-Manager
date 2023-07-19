@@ -3,8 +3,7 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TeamTest {
     Team t1;
@@ -14,6 +13,7 @@ public class TeamTest {
     public void setT1(){
 
         t1 = new Team(m1);
+        m1 = new Manager();
 
     }
 
@@ -67,6 +67,16 @@ public class TeamTest {
         assertEquals(t1.getPoint(), 8);
         t1.updatePoints(2);
         assertEquals(t1.getPoint(),10);
+    }
+
+    @Test
+    public void TestMakePlayer() {
+        m1.addCoin(100);
+        Player p1= new Player(m1, 1);
+        String name = "Nima";
+        p1.setName("Nima");
+        assertTrue(t1.makePlayer(name,m1));
+        assertFalse(t1.makePlayer(name,m1));
     }
 
 
