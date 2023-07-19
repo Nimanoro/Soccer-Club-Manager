@@ -18,7 +18,8 @@ enjoy a competition against pre-defined opponents in the league.
 ## User Stories
 
 - As a user, I want to be able to personalize my name as a manger.
-- As a user, I want to be able to view my team, and it's strength.
+- As a user, I want to be able to view my team, and it's player strength.
 - As a user, I want to be able to visit my placement in the league competition.
 - As a user, I want to be able to update my players' strength by leveling it up.
 - As a user, I want to be able to see my coin inventory.
+- As a user, I want to be able to add a new customized player to my squad.
