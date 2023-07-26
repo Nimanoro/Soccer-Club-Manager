@@ -26,6 +26,7 @@ public class League implements Writable {
      * EFFECTS:Update the standing based on the competing teams point.
      *
      */
+
     public void sortTeams() {
         for (int i = 1; i < this.teams.size(); i++) {
             Predefinedteams key = this.teams.get(i);
