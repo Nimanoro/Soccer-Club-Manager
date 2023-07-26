@@ -1,8 +1,11 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // This class is made to make the manager customizable. It contains two fields
 // the name of the manager and it's coin inventory.
-public class Manager {
+public class Manager implements Writable {
     private String name;
     private Integer coin;
 
@@ -46,5 +49,16 @@ public class Manager {
     public void subCoin(int amount) {
 
         this.coin = this.getCoin() - amount;
+    }
+
+    public void setCoin(int amount) {
+        this.coin = amount;
+    }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("manager name", name);
+        json.put("coin", coin);
+        return json;
     }
 }

@@ -1,7 +1,12 @@
 package ui;
 
 import model.*;
+import org.json.JSONObject;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -31,14 +36,17 @@ public class MainGame {
     private Predefinedteams t7;
     private Predefinedteams t8;
     private Predefinedteams t9;
-
     private League league;
     private Fixture fixture;
     private Scanner input;
-    private Game game;
-    private int week;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+    private static final String JSON_STORE = "./data/Team.json";
 
-    public MainGame() {
+
+    public MainGame() throws FileNotFoundException {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runMain();
     }
 
@@ -46,9 +54,7 @@ public class MainGame {
     private void runMain() {
         boolean keepGoing = true;
         String command = null;
-
         init();
-
         while (keepGoing) {
             displayMainMenu();
             input = new Scanner(System.in);
@@ -81,8 +87,7 @@ public class MainGame {
                 processCommandMain(command);
             }
         }
-
-        System.out.println("Goodbye!");
+        System.out.println("Thanks for playing! Bye bye!");
     }
 
     //EFFECTS: Printing out the options of the main menu.
@@ -91,6 +96,8 @@ public class MainGame {
         System.out.println("start for start game");
         System.out.println("squad");
         System.out.println("standing");
+        System.out.println("save");
+        System.out.println("load");
         System.out.println("Quit");
 
 
@@ -104,6 +111,10 @@ public class MainGame {
             showSquad();
         } else if (command.equals("standing")) {
             showStanding();
+        } else if (command.equals("save")) {
+            saveWorkRoom();
+        } else if (command.equals("load")) {
+            loadWorkRoom();
         } else {
             System.out.println("Not a valid selection...");
         }
@@ -122,8 +133,6 @@ public class MainGame {
         makePredefinedTeams();
         makeLeague();
         makeFixture();
-        week = 0;
-
     }
 
     //EFFECTS: Set up the starting schedule of the team.
@@ -342,9 +351,8 @@ public class MainGame {
     // change the state of the game to a week later.
     //MODIFIES:
     private void startGame() {
-        fixture.setGames();
-        Game game1 = fixture.getGames().get(week);
-        System.out.println("Week " + Integer.toString(week + 1));
+        Game game1 = fixture.getGames().get(fixture.getWeek());
+        System.out.println("Week " + Integer.toString(fixture.getWeek() + 1));
         System.out.println("This is " + game1.getT1().getName() + " VS " + game1.getT2().getName());
         wait(5000);
         game1.generateResult();
@@ -362,9 +370,43 @@ public class MainGame {
         }
         System.out.println("Your coin after this game:" + manager.getCoin());
         System.out.println("your points after this game:" + team.getPoint());
-        week = week + 1;
+        fixture.addAWeek();
         wait(5000);
     }
+
+    private void saveWorkRoom() {
+        try {
+            jsonWriter.open();
+            JSONObject json = jsonWriter.write();
+            jsonWriter.writeTeam(team,json);
+            jsonWriter.writeFixture(fixture,json);
+            jsonWriter.writeLeague(league,json);
+            jsonWriter.writeManager(manager,json);
+            jsonWriter.close();
+            System.out.println("Saved " + team.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    private void loadWorkRoom() {
+        try {
+            Manager manager = jsonReader.readManager();
+            this.manager = manager;
+            Team team = jsonReader.readTeam(this.manager);
+            this.team = team;
+            Fixture fixture = jsonReader.readFixture(team);
+            League league = jsonReader.readLeague(team);
+            this.league = league;
+            this.fixture = fixture;
+
+            System.out.println("Loaded " + manager.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+
 
     //EFFECTS:constructor of the wait method.
     public static void wait(int ms) {

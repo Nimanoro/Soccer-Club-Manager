@@ -1,8 +1,11 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // This class is made to make the predefined teams. It contains three fields
 // Overall, points and the team name.
-public class Predefinedteams {
+public class Predefinedteams implements Writable {
     private int overall;
     private int points;
     private String name;
@@ -35,5 +38,14 @@ public class Predefinedteams {
 
     public String getName() {
         return this.name;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("overall", overall);
+        json.put("point", points);
+        json.put("name", name);
+        return json;
     }
 }

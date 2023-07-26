@@ -1,8 +1,11 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // This class is made to make a player. It contains three fields
 // Star, A manager and the player name.
-public class Player {
+public class Player implements Writable {
     private int star;
     private Manager m1;
     private String name;
@@ -48,4 +51,12 @@ public class Player {
         return this.name;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("star", star);
+        json.put("Manager", m1.toJson());
+        json.put("name", name);
+        return json;
+    }
 }

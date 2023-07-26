@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 
@@ -8,18 +11,21 @@ import java.util.ArrayList;
 public class Team extends Predefinedteams {
     private ArrayList<Player> players = new ArrayList<Player>();
     private Integer point;
-    Manager manager;
+    private String name;
+    private Manager manager;
 
     public Team(Manager m1) {
         super("Dream Team");
         this.manager = m1;
         this.point = 0;
+        this.name = "Dream Team";
     }
 
 
     public void addPlayer(Player p1) {
         this.players.add(p1);
     }
+
 
     public ArrayList<Player> getPlayers() {
         return this.players;
@@ -59,4 +65,21 @@ public class Team extends Predefinedteams {
         return this.manager;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("point", super.getPoint());
+        json.put("manager", manager.toJson());
+        json.put("players", playersToJson());
+        json.put("name",name);
+        return json;
+    }
+
+    private JSONArray playersToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Player p: players) {
+            jsonArray.put(p.toJson());
+        }
+        return jsonArray;
+    }
 }

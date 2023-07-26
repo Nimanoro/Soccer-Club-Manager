@@ -1,11 +1,14 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.Random;
 
 
 // This class is made to make the game and produce its result. It contains four fields
 // Team, Predefined team, goal1, goal2.
-public class Game {
+public class Game implements Writable {
     private Predefinedteams t1;
     private Team t2;
     private int goal1;
@@ -91,5 +94,13 @@ public class Game {
 
     public int getGoal2() {
         return goal2;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("PreTeam", t1);
+        json.put("team",t2);
+        return json;
     }
 }

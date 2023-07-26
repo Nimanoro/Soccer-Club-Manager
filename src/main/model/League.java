@@ -1,10 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
 // This class is made to make the league standing. It holds all the team + Predefined teams as it field.
-public class League {
+public class League implements Writable {
     ArrayList<Predefinedteams> teams = new ArrayList<Predefinedteams>();
     ArrayList<Predefinedteams> standing = new ArrayList<Predefinedteams>();
 
@@ -13,6 +17,10 @@ public class League {
         this.teams = l1;
     }
 
+
+    public void addTeam(Predefinedteams team) {
+        teams.add(team);
+    }
     /*
      * MODIFIES: League
      * EFFECTS:Update the standing based on the competing teams point.
@@ -39,5 +47,21 @@ public class League {
 
     public ArrayList<Predefinedteams> getTeams() {
         return teams;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("teams", teamsToJson());
+        return json;
+    }
+
+    public JSONArray teamsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Predefinedteams t: teams) {
+            jsonArray.put(t.toJson());
+        }
+        return jsonArray;
     }
 }
