@@ -1,5 +1,6 @@
 package persistent;
 
+import model.Fixture;
 import model.League;
 import model.Manager;
 import model.Team;
@@ -9,18 +10,18 @@ import persistence.JsonReader;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class JsonReaderTest {
+public class JsonReaderTest extends JsonTest{
     JsonReader jsonReader;
 
     @BeforeEach
     public void setup() {
-        jsonReader = new JsonReader("./data/Team.json");
+        jsonReader = new JsonReader("./data/Test.json");
     }
     @Test
     public void TestReadManager() throws IOException {
-        assertEquals(jsonReader.readManager().getCoin(),300);
+        Manager manager = jsonReader.readManager();
+        checkManager(manager,"nima", 300);
+
 
 
     }
@@ -29,8 +30,8 @@ public class JsonReaderTest {
     public void TestReadFixture() throws IOException {
         Manager manager = jsonReader.readManager();
         Team team = jsonReader.readTeam(manager);
-        assertEquals(jsonReader.readFixture(team).getWeek(),5);
-
+        Fixture fixture = jsonReader.readFixture(team);
+        checkFixture(fixture,9 , 5);
     }
 
     @Test
@@ -39,7 +40,15 @@ public class JsonReaderTest {
         Team team = jsonReader.readTeam(manager);
         League league = jsonReader.readLeague(team);
         league.sortTeams();
-        assertEquals(league.getTeams().get(0).getName(), "Dream Team");
-
+        checkLeague(league, "Real Madrid",10);
     }
+
+    @Test
+    public void TestReadTeam() throws IOException {
+        Manager manager = jsonReader.readManager();
+        Team team = jsonReader.readTeam(manager);
+        checkTeam(team,"Dream Team", 7, 11);
+    }
+
+
 }
