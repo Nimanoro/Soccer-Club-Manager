@@ -1,4 +1,4 @@
-package persistent;
+package persistence;
 
 import model.Fixture;
 import model.League;
@@ -6,7 +6,6 @@ import model.Manager;
 import model.Team;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import persistence.JsonReader;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package persistent;
+package persistence;
 
 import model.*;
 
@@ -29,7 +29,7 @@ public class JsonTest {
 
     protected void checkLeague(League league, String team1name, Integer numTeams) {
         league.sortTeams();
-        assertEquals(team1name, league.getTeams().get(1).getName());
+        assertEquals(team1name, league.getTeams().get(0).getName());
         assertEquals(numTeams, league.getTeams().size());
     }
 
