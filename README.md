@@ -23,3 +23,6 @@ enjoy a competition against pre-defined opponents in the league.
 - As a user, I want to be able to update my players' strength by leveling it up.
 - As a user, I want to be able to see my coin inventory.
 - As a user, I want to be able to add a new customized player to my squad.
+- As a user, I want to be able to save my squad, coin inventory, team points and standing.
+- As a user, I want to be able to load my squad, coin inventory, team points and standing.
+
