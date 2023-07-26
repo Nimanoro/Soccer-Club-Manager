@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 class JsonWriterTest extends JsonTest {
@@ -35,9 +36,15 @@ class JsonWriterTest extends JsonTest {
             Player player = new Player(manager, 2);
             player.setName("amin");
             team.addPlayer(player);
+            Predefinedteams pt = new Predefinedteams("Arsenal");
+            pt.setOverall(2);
+            pt.updatePoints(3);
             League league = new League();
             league.addTeam(team);
+            league.addTeam(pt);
             Fixture fixture = new Fixture(team);
+            fixture.addPreDTeams(pt);
+            fixture.setGames();
             JsonWriter writer = new JsonWriter("./data/testWriterFullGame.json");
             writer.open();
             JSONObject json = writer.write();
@@ -54,9 +61,17 @@ class JsonWriterTest extends JsonTest {
             checkTeam(team1, "Dream Team", 0, 1);
             checkPlayer(team1.getPlayers().get(0), "amin", 2, 0);
             Fixture fixture1 = reader.readFixture(team1);
-            checkFixture(fixture1, 0, 0);
+            checkFixture(fixture1, 1, 0);
+            Game game = fixture1.getGames().get(0);
+            assertEquals(game.getT1().getName(), "Arsenal");
+            assertEquals(game.getT1().getPoint(), 3);
+            assertEquals(game.getT2().getName(), "Dream Team");
             League league1 = reader.readLeague(team1);
-            checkLeague(league1, "Dream Team", 1);
+            checkLeague(league1, "Arsenal", 2);
+            Predefinedteams pt1 = league1.getTeams().get(0);
+            assertEquals(pt1.getName(),"Arsenal");
+            assertEquals(pt1.getPoint(),3);
+
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }

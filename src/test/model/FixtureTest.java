@@ -52,4 +52,12 @@ public class FixtureTest {
         assertEquals(f1.getGames().get(1).getT1(),t3);
         assertEquals(f1.getGames().get(0).getT1(),t2);
     }
+
+    @Test
+    public void TestAddAWeek() {
+        f1.addAWeek();
+        assertEquals(f1.getWeek(),1);
+        f1.addAWeek();
+        assertEquals(f1.getWeek(),2);
+    }
 }
