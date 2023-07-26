@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+// Represents a reader that reads state of the whole game from JSON data stored in file
 public class JsonReader {
     private String source;
 
@@ -19,6 +20,8 @@ public class JsonReader {
     }
 
 
+    // EFFECTS: reads Manager from file and returns it;
+    // throws IOException if an error occurs reading data from file
     public Manager readManager() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
@@ -27,6 +30,8 @@ public class JsonReader {
 
     }
 
+    // EFFECTS: reads Manager from file and returns it;
+    // throws IOException if an error occurs reading data from file
     public League readLeague(Team team) throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
@@ -35,6 +40,8 @@ public class JsonReader {
 
     }
 
+    // EFFECTS: reads Team from file and returns it;
+    // throws IOException if an error occurs reading data from file
     public Team readTeam(Manager manager) throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
@@ -43,6 +50,8 @@ public class JsonReader {
 
     }
 
+    // EFFECTS: reads Fixture from file and returns it;
+    // throws IOException if an error occurs reading data from file
     public Fixture readFixture(Team team) throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
@@ -53,7 +62,7 @@ public class JsonReader {
 
 
 
-
+    // EFFECTS: reads source file as string and returns it
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
 
@@ -64,6 +73,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
+    // EFFECTS: parses Team from JSON object and returns it
     private Team parseTeam(JSONObject jsonObject, Manager manager) {
         JSONObject jsonTeam = jsonObject.getJSONObject("team");
         Integer point = jsonTeam.getInt("point");
@@ -74,6 +84,8 @@ public class JsonReader {
 
     }
 
+    //Modifies: Team
+    // EFFECTS: add Players to the team
     private void addPlayers(Team team, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("players");
         for (Object json : jsonArray) {
@@ -82,9 +94,9 @@ public class JsonReader {
         }
     }
 
-
-    @SuppressWarnings({"checkstyle:MethodParamPad", "checkstyle:SuppressWarnings"})
-    private void addPlayer (Team team, JSONObject jsonObject) {
+    //Modifies: Team
+    // EFFECTS: add a Player to the team
+    private void addPlayer(Team team, JSONObject jsonObject) {
         Integer star = jsonObject.getInt("star");
         String name = jsonObject.getString("name");
         Player player = new Player(team.getManager(),star);
@@ -93,6 +105,7 @@ public class JsonReader {
 
     }
 
+    // EFFECTS: parses Fixture from JSON object and returns it
     private Fixture parseFixture(JSONObject jsonObject, Team team) {
         JSONObject jsonFixture = jsonObject.getJSONObject("fixture");
         Integer week = jsonFixture.getInt("week");
@@ -109,6 +122,7 @@ public class JsonReader {
         return fixture;
     }
 
+    // EFFECTS: add PreTeam from JSON object and add it to the fixture
     private void addPreTeam(Fixture fixture, JSONObject preteam) {
         Integer overall = preteam.getInt("overall");
         Integer point = preteam.getInt("point");
@@ -120,7 +134,7 @@ public class JsonReader {
 
     }
 
-
+    // EFFECTS: parses Manager from JSON object and returns it
     private Manager parseManager(JSONObject jsonObject) {
         JSONObject jsonManager = jsonObject.getJSONObject("manager");
         String name = jsonManager.getString("manager name");
@@ -131,6 +145,7 @@ public class JsonReader {
         return manager;
     }
 
+    // EFFECTS: parses League from JSON object and returns it
     private League parseLeague(JSONObject jsonObject, Team team) {
         JSONObject jsonLeague = jsonObject.getJSONObject("league");
         JSONArray jsonArray = jsonLeague.getJSONArray("teams");
@@ -144,6 +159,7 @@ public class JsonReader {
         return league;
     }
 
+    // EFFECTS: add PreTeam from JSON object and add it to the league
     private void addPreTeamToLeague(League league, JSONObject jsonObject) {
         if (!jsonObject.getString("name").equals("Dream Team")) {
             Integer point = jsonObject.getInt("point");
