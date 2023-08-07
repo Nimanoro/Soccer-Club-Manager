@@ -39,10 +39,10 @@ public class FirstMenu extends JFrame {
     protected  static JsonWriter jsonWriter;
     protected  static JsonReader jsonReader;
     protected static final String JSON_STORE = "./data/Team.json";
-
+    protected static JFrame parent;
 
     public static void main(final String[] args) {
-        final JFrame parent = new JFrame();
+        parent = new JFrame();
         JButton button = new JButton();
 
         button.setText("Click me to Start the game!");
@@ -174,6 +174,7 @@ public class FirstMenu extends JFrame {
 
     public void saveGame() {
         try {
+            jsonWriter = new JsonWriter(JSON_STORE);
             jsonWriter.open();
             JSONObject json = jsonWriter.write();
             jsonWriter.writeTeam(team,json);
@@ -181,13 +182,14 @@ public class FirstMenu extends JFrame {
             jsonWriter.writeLeague(league,json);
             jsonWriter.writeManager(manager,json);
             jsonWriter.close();
-            System.out.println("Saved " + team.getName() + " to " + JSON_STORE);
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE);
+            JFrame error = new JFrame("Error");
+            error.setVisible(true);
         }
     }
 
     public void loadGame() {
+        jsonReader = new JsonReader(JSON_STORE);
         try {
             Manager manager = jsonReader.readManager();
             this.manager = manager;
@@ -197,8 +199,19 @@ public class FirstMenu extends JFrame {
             League league = jsonReader.readLeague(team);
             this.league = league;
             this.fixture = fixture;
-
         } catch (IOException e) {
+            JFrame error = new JFrame("Error");
+            error.setVisible(true);
+
+        }
+    }
+
+
+    public static void wait(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
         }
     }
 

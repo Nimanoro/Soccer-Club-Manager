@@ -6,17 +6,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class TeamPanel extends MainMenu {
+public class TeamPanel extends FirstMenu {
 
-    JFrame teamFrame;
+    private JFrame teamFrame;
+    private JTextField nameField = new JTextField("");
+    private JFrame makeMenu = new JFrame();
+    private JFrame playerFrame;
+
+
 
     public TeamPanel() {
         teamFrame = new JFrame();
         teamFrame.setTitle("Team Menu");
-        teamFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         teamFrame.setPreferredSize(new Dimension(600, 600));
-        JLabel managerLabel = new JLabel(super.manager.getName() + " coins:"
-                + Integer.toString(super.manager.getCoin()));
+        JLabel managerLabel = new JLabel(manager.getName() + " coins:"
+                + Integer.toString(manager.getCoin()));
         managerLabel.setHorizontalAlignment(JLabel.CENTER);
         teamFrame.add(managerLabel, BorderLayout.NORTH);
 
@@ -31,7 +35,7 @@ public class TeamPanel extends MainMenu {
 
     private void addButtons() {
         // Create the container to hold the buttons
-        JPanel buttonPanel = new JPanel(new GridLayout(13, 1, 10, 10));
+        JPanel buttonPanel = new JPanel(new GridLayout(team.getPlayers().size() + 2, 1, 10, 10));
         // The GridLayout will create a 1x12 grid with 10-pixel horizontal and vertical gaps
 
         // Add buttons to the panel
@@ -39,7 +43,7 @@ public class TeamPanel extends MainMenu {
             JButton button = new JButton(team.getPlayers().get(i).getName()
                     + " " + "Stars: " + Integer.toString(team.getPlayers().get(i).getStar()));
             button.addActionListener(this::actionPerformed);
-            button.setActionCommand("player " + Integer.toString(i));
+            button.setActionCommand(Integer.toString(i));
             buttonPanel.add(button);
         }
         // Add the panel to the frame's content pane
@@ -49,21 +53,25 @@ public class TeamPanel extends MainMenu {
         buttonPanel.add(make);
 
         JButton quit = new JButton("Back to main menu");
-        make.addActionListener(this::actionPerformed);
-        make.setActionCommand("quit");
+        quit.addActionListener(this::actionPerformed);
+        quit.setActionCommand("Quit");
         buttonPanel.add(quit);
 
         teamFrame.getContentPane().add(buttonPanel);
     }
 
 
-    @Override
     public void actionPerformed(ActionEvent ae) {
         String action = ae.getActionCommand();
-        if (action.startsWith("player")) {
-            Integer number = Integer.parseInt(action.substring(action.length() - 1));
+
+        if (action.equals("make")) {
+            makeMenu();
+        } else if (action.equals("Quit")) {
+            teamFrame.dispose();
+        } else {
+            Integer number = Integer.parseInt(action);
             JPanel updatePanel = new JPanel();
-            JFrame playerFrame = new JFrame();
+            playerFrame = new JFrame();
             playerFrame.setPreferredSize(new Dimension(400, 400));
             JLabel updateLabel = new JLabel("Do you want to update this player? "
                     + team.getPlayers().get(number).getName());
@@ -71,82 +79,108 @@ public class TeamPanel extends MainMenu {
             JPanel buts = new JPanel();
             JButton yes = new JButton("yes");
             yes.addActionListener(this::actionPlayer);
-            yes.setActionCommand("yes" + number);
+            yes.setActionCommand(Integer.toString(number));
             JButton no = new JButton("no");
             no.addActionListener(this::actionPlayer);
             no.setActionCommand("no");
             buts.add(yes);
             buts.add(no);
             updatePanel.add(updateLabel);
-            playerFrame.add(updatePanel,BorderLayout.NORTH);
+            playerFrame.add(updatePanel, BorderLayout.NORTH);
             playerFrame.add(buts);
             teamFrame.dispose();
             playerFrame.pack();
             playerFrame.setLocationRelativeTo(null);
             playerFrame.setVisible(true);
-        } else if (action.equals("make")) {
-            makeMenu();
-        } else if (action.equals("quit")) {
-            teamFrame.dispose();
         }
     }
+
 
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void actionPlayer(ActionEvent ae) {
         String action = ae.getActionCommand();
-        if (action.startsWith("yes")) {
-            Integer number = Integer.parseInt(action.substring(action.length() - 1));
+
+        if (action.startsWith("no")) {
+            teamFrame.dispose();
+            new TeamPanel();
+        } else {
+            Integer number = Integer.parseInt(action);
             Player player = team.getPlayers().get(number);
             JFrame playerFrame = new JFrame("update player");
-            playerFrame.setPreferredSize(new Dimension(400,200));
+            playerFrame.setPreferredSize(new Dimension(400, 200));
             teamFrame.dispose();
             if (manager.getCoin() >= 10) {
                 if (player.improvePlayer()) {
                     JLabel playerLabel = new JLabel(player.getName() + " was updated");
                     JLabel playerStatus = new JLabel("Current Stars " + player.getName() + ":" + player.getStar());
-                    playerFrame.add(playerLabel, CENTER_ALIGNMENT);
-                    playerFrame.add(playerStatus, CENTER_ALIGNMENT);
+                    playerFrame.add(playerLabel);
+                    playerFrame.add(playerStatus);
                     playerFrame.pack();
                     playerFrame.setLocationRelativeTo(null);
                     playerFrame.setVisible(true);
                 } else if (!player.improvePlayer()) {
                     JLabel playerLabel = new JLabel("This player is maxed out");
-                    playerFrame.add(playerLabel, CENTER_ALIGNMENT);
-                    playerFrame.pack();
-                    playerFrame.setLocationRelativeTo(null);
-                    playerFrame.setVisible(true);
-                } else {
-                    Integer missing;
-                    missing = (10 - manager.getCoin());
-                    JLabel playerLabel = new JLabel("You don't have enough coin to update this player.");
-                    JLabel playerStatus = new JLabel("You need " + Integer.toString(missing) + " coins");
-                    playerFrame.add(playerLabel, BorderLayout.CENTER);
-                    playerFrame.add(playerStatus,  BorderLayout.CENTER);
+                    playerFrame.add(playerLabel);
                     playerFrame.pack();
                     playerFrame.setLocationRelativeTo(null);
                     playerFrame.setVisible(true);
                 }
+
             } else {
-                JLabel playerLabel = new JLabel("You don't have enough coin to update your player");
-                playerFrame.add(playerLabel, BorderLayout.CENTER);
+                Integer missing;
+                missing = (10 - manager.getCoin());
+                JLabel playerStatus = new JLabel("You need " + Integer.toString(missing)
+                        + " more coins to update this player");
+                playerStatus.setHorizontalAlignment(SwingConstants.CENTER);
+                playerFrame.add(playerStatus, BorderLayout.CENTER);
                 playerFrame.pack();
                 playerFrame.setLocationRelativeTo(null);
                 playerFrame.setVisible(true);
             }
-        } else {
-            new TeamPanel();
         }
+        new TeamPanel();
     }
 
     public void makeMenu() {
-        JFrame make = new JFrame();
-        make.setPreferredSize(new Dimension(400,400));
-        JPanel makePanel = new JPanel();
-        JLabel makeLabel = new JLabel("Do you want to make a new player? Cost: 100 coins");
-        makePanel.add(makeLabel,CENTER_ALIGNMENT);
-        make.add(makePanel);
-        make.pack();
-        make.setLocationRelativeTo(null);
-        make.setVisible(true);
+        makeMenu.setPreferredSize(new Dimension(400, 400));
+        JPanel panel = new JPanel(new GridLayout(3,1));
+        JLabel enterIns = new JLabel("Enter the name of the new player: Cost 100");
+        JButton submitBut = new JButton("submit");
+        submitBut.addActionListener(this::actionMake);
+        submitBut.setActionCommand("submit");
+        panel.add(enterIns);
+        panel.add(nameField);
+        panel.add(submitBut);
+        makeMenu.add(panel);
+        makeMenu.pack();
+        makeMenu.setLocationRelativeTo(null);
+        makeMenu.setVisible(true);
+    }
+
+    private void actionMake(ActionEvent ae) {
+        String action = ae.getActionCommand();
+        if (action.equals("submit")) {
+            if (team.makePlayer(nameField.getText(), manager)) {
+                teamFrame.dispose();
+                makeMenu.dispose();
+                new TeamPanel();
+            } else {
+                Integer missing;
+                missing = (100 - manager.getCoin());
+                JPanel parent = new JPanel(new GridLayout(2,1));
+                JLabel playerLabel = new JLabel("You don't have enough coin to update this player.");
+                JLabel playerStatus = new JLabel("You need " + Integer.toString(missing) + " coins");
+                JFrame playerFrame = new JFrame("not enough coin!");
+                playerFrame.setPreferredSize(new Dimension(400, 200));
+                parent.add(playerLabel, JLabel.CENTER);
+                parent.add(playerStatus, JLabel.CENTER);
+                playerFrame.add(parent);
+                playerFrame.pack();
+                playerFrame.setLocationRelativeTo(null);
+                playerFrame.setVisible(true);
+
+            }
+
+        }
     }
 }

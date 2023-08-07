@@ -11,7 +11,9 @@ public class LeaguePanel extends MainMenu {
     public LeaguePanel() {
         leagueFrame = new JFrame();
         leagueFrame.setPreferredSize(new Dimension(600,600));
+        leagueFrame.setBackground(Color.blue);
         JPanel leaguePanel = new JPanel(new GridLayout(11,1, 10, 10));
+        leaguePanel.setBackground(Color.cyan);
         league.sortTeams();
         for (int i = 0; i < league.getTeams().size(); i++) {
             Predefinedteams team = league.getTeams().get(i);

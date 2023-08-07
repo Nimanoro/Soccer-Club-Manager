@@ -1,7 +1,10 @@
 package ui;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainMenu extends FirstMenu {
 
@@ -15,10 +18,8 @@ public class MainMenu extends FirstMenu {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(600, 600));
 
-        // Create and add buttons to the content pane
         addButtons();
 
-        // Pack the frame and make it visible
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -26,18 +27,31 @@ public class MainMenu extends FirstMenu {
 
 
     private void addButtons() {
-        // Create the container to hold the buttons
-        JPanel buttonPanel = new JPanel(new GridLayout(2, 6, 10, 10));
-        // The GridLayout will create a 1x12 grid with 10-pixel horizontal and vertical gaps
+        JPanel buttonPanel = new JPanel(new GridLayout(2, 3, 10, 10));
 
-        // Add buttons to the panel
-        JButton button1 = new JButton("StartGame");
-        button1.setPreferredSize(new Dimension(40, 40));
+        ImageIcon img = new ImageIcon("data/Soccer-Ball.jpeg");
+        Image image = img.getImage(); // transform it
+        Image newImg = image.getScaledInstance(220, 300,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        img = new ImageIcon(newImg);
+        JButton button1 = new JButton("start game");
+        button1.setIcon(img);
+        ImageIcon finalImg = img;
+        button1.addMouseListener(new MouseAdapter() {
+            Color color = button1.getForeground();
+            public void mouseEntered(MouseEvent me) {
+                color = button1.getForeground();
+                button1.setIcon(null);
+                button1.setText("Start game"); // change the color to green when mouse over a button
+            }
+
+            public void mouseExited(MouseEvent me) {
+                button1.setIcon(finalImg);
+            }
+        });
         button1.addActionListener(this::actionPerformed);
         button1.setActionCommand("Start");
         buttonPanel.add(button1);
         JButton button2 = new JButton("Squad");
-        button2.setPreferredSize(new Dimension(40, 40));
         button2.addActionListener(this::actionPerformed);
         button2.setActionCommand("Squad");
         buttonPanel.add(button2);
@@ -54,13 +68,9 @@ public class MainMenu extends FirstMenu {
         button5.setActionCommand("Load");
         buttonPanel.add(button5);
         JButton button6 = new JButton("Quit");
-        button5.addActionListener(this::actionPerformed);
-        button5.setActionCommand("Quit");
+        button6.addActionListener(this::actionPerformed);
+        button6.setActionCommand("Quit");
         buttonPanel.add(button6);
-
-
-
-        // Add the panel to the frame's content pane
         frame.getContentPane().add(buttonPanel);
     }
 
