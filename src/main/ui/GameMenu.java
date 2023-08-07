@@ -6,10 +6,14 @@ import model.Predefinedteams;
 import javax.swing.*;
 import java.awt.*;
 
+//Constructs the game menu
 public class GameMenu extends FirstMenu {
 
     JFrame gameFrame;
 
+    //MODIFIES: THIS
+    //EFFECTS: Construct the GameFrame
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public GameMenu() {
         gameFrame = new JFrame();
         gameFrame.setPreferredSize(new Dimension(500,500));

@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+//Builds the teamFrame
 public class TeamPanel extends FirstMenu {
 
     private JFrame teamFrame;
@@ -14,7 +15,8 @@ public class TeamPanel extends FirstMenu {
     private JFrame playerFrame;
 
 
-
+    //MODIFIES: this
+    //EFFECTS: constructs the TeamPanel
     public TeamPanel() {
         teamFrame = new JFrame();
         teamFrame.setTitle("Team Menu");
@@ -33,6 +35,8 @@ public class TeamPanel extends FirstMenu {
         teamFrame.setVisible(true);
     }
 
+    //MODIFIES: this
+    //EFFECTS: add player buttons
     private void addButtons() {
         // Create the container to hold the buttons
         JPanel buttonPanel = new JPanel(new GridLayout(team.getPlayers().size() + 2, 1, 10, 10));
@@ -60,7 +64,7 @@ public class TeamPanel extends FirstMenu {
         teamFrame.getContentPane().add(buttonPanel);
     }
 
-
+    //EFFECTS: Navigate the button to menus from TeamFrame
     public void actionPerformed(ActionEvent ae) {
         String action = ae.getActionCommand();
 
@@ -70,45 +74,48 @@ public class TeamPanel extends FirstMenu {
             teamFrame.dispose();
         } else {
             Integer number = Integer.parseInt(action);
-            JPanel updatePanel = new JPanel();
-            playerFrame = new JFrame();
-            playerFrame.setPreferredSize(new Dimension(400, 400));
-            JLabel updateLabel = new JLabel("Do you want to update this player? "
-                    + team.getPlayers().get(number).getName());
-            updateLabel.setHorizontalAlignment(JLabel.CENTER);
-            JPanel buts = new JPanel();
-            JButton yes = new JButton("yes");
-            yes.addActionListener(this::actionPlayer);
-            yes.setActionCommand(Integer.toString(number));
-            JButton no = new JButton("no");
-            no.addActionListener(this::actionPlayer);
-            no.setActionCommand("no");
-            buts.add(yes);
-            buts.add(no);
-            updatePanel.add(updateLabel);
-            playerFrame.add(updatePanel, BorderLayout.NORTH);
-            playerFrame.add(buts);
-            teamFrame.dispose();
-            playerFrame.pack();
-            playerFrame.setLocationRelativeTo(null);
-            playerFrame.setVisible(true);
+            playerFrameMaker(number);
         }
     }
 
+    //EFFECTS: makes the playerFrame
+    private void playerFrameMaker(Integer number) {
+        JPanel updatePanel = new JPanel();
+        playerFrame = new JFrame();
+        playerFrame.setPreferredSize(new Dimension(400, 400));
+        JLabel updateLabel = new JLabel("Do you want to update this player? "
+                + team.getPlayers().get(number).getName());
+        updateLabel.setHorizontalAlignment(JLabel.CENTER);
+        JPanel buts = new JPanel();
+        JButton yes = new JButton("yes");
+        yes.addActionListener(this::actionPlayer);
+        yes.setActionCommand(Integer.toString(number));
+        JButton no = new JButton("no");
+        no.addActionListener(this::actionPlayer);
+        no.setActionCommand("no");
+        buts.add(yes);
+        buts.add(no);
+        updatePanel.add(updateLabel);
+        playerFrame.add(updatePanel, BorderLayout.NORTH);
+        playerFrame.add(buts);
+        teamFrame.dispose();
+        playerFrame.pack();
+        playerFrame.setLocationRelativeTo(null);
+        playerFrame.setVisible(true);
+    }
 
+    //EFFECTS: Navigate the button to menus from PlayerFrame
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void actionPlayer(ActionEvent ae) {
         String action = ae.getActionCommand();
 
         if (action.startsWith("no")) {
             teamFrame.dispose();
-            new TeamPanel();
         } else {
             Integer number = Integer.parseInt(action);
             Player player = team.getPlayers().get(number);
             JFrame playerFrame = new JFrame("update player");
             playerFrame.setPreferredSize(new Dimension(400, 200));
-            teamFrame.dispose();
             if (manager.getCoin() >= 10) {
                 if (player.improvePlayer()) {
                     JLabel playerLabel = new JLabel(player.getName() + " was updated");
@@ -138,9 +145,10 @@ public class TeamPanel extends FirstMenu {
                 playerFrame.setVisible(true);
             }
         }
-        new TeamPanel();
     }
 
+    //MODIFIES: This
+    //EFFECTS: BUILD THE MAKE PLAYER MENU
     public void makeMenu() {
         makeMenu.setPreferredSize(new Dimension(400, 400));
         JPanel panel = new JPanel(new GridLayout(3,1));
@@ -157,6 +165,7 @@ public class TeamPanel extends FirstMenu {
         makeMenu.setVisible(true);
     }
 
+    //EFFECTS: Navigate the button to menus from makeMenuFrame
     private void actionMake(ActionEvent ae) {
         String action = ae.getActionCommand();
         if (action.equals("submit")) {

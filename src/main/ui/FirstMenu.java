@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
+//Construct the StartingFrame + initiate the game
 public class FirstMenu extends JFrame {
     protected static Manager manager;
     protected static Team team;
@@ -41,6 +42,8 @@ public class FirstMenu extends JFrame {
     protected static final String JSON_STORE = "./data/Team.json";
     protected static JFrame parent;
 
+    //EFFECTS: Start the game
+    //MODIFIES: this
     public static void main(final String[] args) {
         parent = new JFrame();
         JButton button = new JButton();
@@ -67,6 +70,8 @@ public class FirstMenu extends JFrame {
 
     }
 
+    //MODIFIES: Manager, Player, Team, PredefinedTeam, League, Fixture
+    //EFFECTS: Set up the starting environment of th game.
     private static void gameInit(String name) {
         manager = new Manager();
         manager.setName(name);
@@ -172,6 +177,7 @@ public class FirstMenu extends JFrame {
         fixture.setGames();
     }
 
+    //EFFECTS: Save the game to the specified file
     public void saveGame() {
         try {
             jsonWriter = new JsonWriter(JSON_STORE);
@@ -188,6 +194,8 @@ public class FirstMenu extends JFrame {
         }
     }
 
+    //MODIFIES: Team, League, Manager, Fixture
+    //EFFECTS: load the game from the specified file
     public void loadGame() {
         jsonReader = new JsonReader(JSON_STORE);
         try {
@@ -203,15 +211,6 @@ public class FirstMenu extends JFrame {
             JFrame error = new JFrame("Error");
             error.setVisible(true);
 
-        }
-    }
-
-
-    public static void wait(int ms) {
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
         }
     }
 
