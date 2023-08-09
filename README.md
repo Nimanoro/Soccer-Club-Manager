@@ -28,9 +28,7 @@ enjoy a competition against pre-defined opponents in the league.
 
 ## Phase 4 task 2
 
-Wed Aug 09 16:51:05 PDT 2023
-
-Added player: njkn to the team
+Wed Aug 09 16:51:05 PDT 2023 Added player: njkn to the team
 
 Wed Aug 09 16:51:11 PDT 2023
 Updated player: Sergio Ramos: 2
