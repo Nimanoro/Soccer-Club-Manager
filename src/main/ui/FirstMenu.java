@@ -47,7 +47,8 @@ public class FirstMenu extends JFrame {
     public static void main(final String[] args) {
         parent = new JFrame();
         JButton button = new JButton();
-
+        ImageIcon img = new ImageIcon("data/Soccer.png");
+        parent.setIconImage(img.getImage());
         button.setText("Click me to Start the game!");
         parent.setLocationRelativeTo(null);
         parent.add(button);

@@ -17,6 +17,8 @@ public class MainMenu extends FirstMenu {
     // EFFECTS: constructs new frame in JFrame
     public MainMenu() {
         frame = new JFrame();
+        Image icon = Toolkit.getDefaultToolkit().getImage("data/Soccer.png");
+        frame.setIconImage(icon);
         frame.setTitle("Main Menu");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(600, 600));
@@ -34,103 +36,160 @@ public class MainMenu extends FirstMenu {
     private void addButtons() {
         JPanel buttonPanel = new JPanel(new GridLayout(2, 3, 10, 10));
 
-        ImageIcon img = imageProccesor("data/Soccer-Ball.jpeg");
-        JButton button1 = new JButton("start game");
+        ImageIcon img = imageProccesor("data/1.png");
+        JButton button1 = new JButton();
         button1.setIcon(img);
+        button1.setHorizontalTextPosition(SwingConstants.CENTER);
+
+        Color background = new Color(2,90,40);
         button1.addMouseListener(new MouseAdapter() {
 
             public void mouseEntered(MouseEvent me) {
                 button1.setIcon(null);
-                button1.setText("Start game");
+                button1.setText("Can");
+                button1.setBackground(background);
+                button1.setForeground(Color.white);
+                button1.setBorderPainted(false);
+                button1.setFont(new Font("Arial", Font.PLAIN, 40));
+                button1.setOpaque(true);
             }
 
             public void mouseExited(MouseEvent me) {
+                button1.setText(null);
                 button1.setIcon(img);
+                button1.setHorizontalTextPosition(SwingConstants.CENTER);
+
             }
         });
         button1.addActionListener(this::actionPerformed);
         button1.setActionCommand("Start");
         buttonPanel.add(button1);
 
-        ImageIcon img1 = imageProccesor("data/Squad-image.png");
-        JButton button2 = new JButton("Squad");
+        ImageIcon img1 = imageProccesor("data/3.png");
+        JButton button2 = new JButton();
         button2.setIcon(img1);
+        button2.setHorizontalTextPosition(SwingConstants.CENTER);
         button2.addMouseListener(new MouseAdapter() {
 
             public void mouseEntered(MouseEvent me) {
                 button2.setIcon(null);
-                button2.setText("Squad"); // change the color to green when mouse over a button
+                button2.setText("You");
+                button2.setBackground(background);
+                button2.setForeground(Color.white);
+                button2.setBorderPainted(false);
+                button2.setFont(new Font("Arial", Font.PLAIN, 40));
+                button2.setOpaque(true);// change the color to green when mouse over a button
             }
 
             public void mouseExited(MouseEvent me) {
+                button2.setText(null);
                 button2.setIcon(img1);
+                button2.setHorizontalTextPosition(SwingConstants.CENTER);
+
             }
         });
         button2.addActionListener(this::actionPerformed);
         button2.setActionCommand("Squad");
         buttonPanel.add(button2);
-        ImageIcon img2 = imageProccesor("data/Cup-image.jpeg");
-        JButton button3 = new JButton("Standing");
+        ImageIcon img2 = imageProccesor("data/2.png");
+        JButton button3 = new JButton();
         button3.setIcon(img2);
+        button3.setHorizontalTextPosition(SwingConstants.CENTER);
+
         button3.addMouseListener(new MouseAdapter() {
 
             public void mouseEntered(MouseEvent me) {
                 button3.setIcon(null);
-                button3.setText("Standing"); // change the color to green when mouse over a button
+                button3.setText("win");
+                button3.setBackground(background);
+                button3.setForeground(Color.white);
+                button3.setBorderPainted(false);
+                button3.setFont(new Font("Arial", Font.PLAIN, 40));
+                button3.setOpaque(true);
             }
 
             public void mouseExited(MouseEvent me) {
+                button3.setText(null);
+                button3.setHorizontalTextPosition(SwingConstants.CENTER);
                 button3.setIcon(img2);
             }
         });
         button3.addActionListener(this::actionPerformed);
         button3.setActionCommand("Standing");
         buttonPanel.add(button3);
-        ImageIcon img3 = imageProccesor("data/Save.png");
-        JButton button4 = new JButton("Save");
+        ImageIcon img3 = imageProccesor("data/4.png");
+        JButton button4 = new JButton();
         button4.setIcon(img3);
+        button4.setHorizontalTextPosition(SwingConstants.CENTER);
+
         button4.addMouseListener(new MouseAdapter() {
 
             public void mouseEntered(MouseEvent me) {
                 button4.setIcon(null);
-                button4.setText("Save"); // change the color to green when mouse over a button
+                button4.setText("this");
+                button4.setBackground(background);
+                button4.setForeground(Color.white);
+                button4.setBorderPainted(false);
+                button4.setFont(new Font("Arial", Font.PLAIN, 40));
+                button4.setOpaque(true);
             }
 
             public void mouseExited(MouseEvent me) {
+                button4.setText(null);
+                button4.setHorizontalTextPosition(SwingConstants.CENTER);
+
                 button4.setIcon(img3);
             }
         });
         button4.addActionListener(this::actionPerformed);
         button4.setActionCommand("Save");
         buttonPanel.add(button4);
-        ImageIcon img4 = imageProccesor("data/load-image.jpeg");
-        JButton button5 = new JButton("Load");
+        ImageIcon img4 = imageProccesor("data/5.png");
+        JButton button5 = new JButton();
         button5.setIcon(img4);
+        button5.setHorizontalTextPosition(SwingConstants.CENTER);
+
         button5.addMouseListener(new MouseAdapter() {
 
             public void mouseEntered(MouseEvent me) {
                 button5.setIcon(null);
-                button5.setText("Load"); // change the color to green when mouse over a button
+                button5.setText("?");
+                button5.setBackground(background);
+                button5.setForeground(Color.white);
+                button5.setBorderPainted(false);
+                button5.setFont(new Font("Arial", Font.PLAIN, 40));
+                button5.setOpaque(true);// change the color to green when mouse over a button
             }
 
             public void mouseExited(MouseEvent me) {
+                button5.setText(null);
+                button5.setHorizontalTextPosition(SwingConstants.CENTER);
                 button5.setIcon(img4);
             }
         });
         button5.addActionListener(this::actionPerformed);
         button5.setActionCommand("Load");
         buttonPanel.add(button5);
-        ImageIcon img5 = imageProccesor("data/exit.jpeg");
-        JButton button6 = new JButton("Quit");
+        ImageIcon img5 = imageProccesor("data/6.png");
+        JButton button6 = new JButton();
         button6.setIcon(img5);
+        button6.setHorizontalTextPosition(SwingConstants.CENTER);
         button6.addMouseListener(new MouseAdapter() {
 
             public void mouseEntered(MouseEvent me) {
                 button6.setIcon(null);
-                button6.setText("Quit"); // change the color to green when mouse over a button
+                button6.setText("!");
+                button6.setBackground(background);
+                button6.setForeground(Color.white);
+                button6.setBorderPainted(false);
+                button6.setFont(new Font("Arial", Font.PLAIN, 40));
+                button6.setOpaque(true);// change the color to green when mouse over a button // change the color to green when mouse over a button
             }
 
             public void mouseExited(MouseEvent me) {
+                button6.setText(null);
+                button6.setHorizontalTextPosition(SwingConstants.CENTER);
+
                 button6.setIcon(img5);
             }
         });
