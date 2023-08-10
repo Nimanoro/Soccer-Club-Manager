@@ -32,6 +32,8 @@ public class TestEvent {
         assertEquals("n", e.getDescription());
         assertTrue(e.equals(e));
         assertFalse(e.equals(m));
+        assertEquals(e.getDate().getHours(),17);
+        assertFalse(e.equals(null));
     }
 
     @Test
