@@ -8,7 +8,6 @@ import java.util.Date;
  * Represents an alarm system event.
  */
 public class Event {
-    private static final int HASH_CONSTANT = 13;
     private Date dateLogged;
     private String description;
 
@@ -52,11 +51,6 @@ public class Event {
 
         return (this.dateLogged.equals(otherEvent.dateLogged)
                 && this.description.equals(otherEvent.description));
-    }
-
-    @Override
-    public int hashCode() {
-        return (HASH_CONSTANT * dateLogged.hashCode() + description.hashCode());
     }
 
     @Override

@@ -15,6 +15,7 @@ public class TestEvent {
     private Event e;
     private Date d;
     private Event m;
+    private Event x;
 
     //NOTE: these tests might fail if time at which line (2) below is executed
     //is different from time that line (1) is executed.  Lines (1) and (2) must
@@ -32,8 +33,11 @@ public class TestEvent {
         assertEquals("n", e.getDescription());
         assertTrue(e.equals(e));
         assertFalse(e.equals(m));
-        assertEquals(e.getDate().getHours(),17);
+        assertEquals(e.getDate().getHours(),20);
         assertFalse(e.equals(null));
+        assertFalse(e.equals(x));
+        assertFalse(e.equals(d));
+
     }
 
     @Test
