@@ -1,5 +1,8 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -183,7 +186,7 @@ public class MainMenu extends FirstMenu {
                 button6.setForeground(Color.white);
                 button6.setBorderPainted(false);
                 button6.setFont(new Font("Arial", Font.PLAIN, 40));
-                button6.setOpaque(true);// change the color to green when mouse over a button // change the color to green when mouse over a button
+                button6.setOpaque(true);
             }
 
             public void mouseExited(MouseEvent me) {
@@ -214,9 +217,14 @@ public class MainMenu extends FirstMenu {
         } else if (action.equals("Load")) {
             super.loadGame();
         } else if (action.equals("Quit")) {
+            for (Event ev : EventLog.getInstance()) {
+                System.out.println(ev.toString());
+            }
             System.exit(0);
+
         }
     }
+
 
     //EFFECTS: PREPROCESS IMAGE TO BE ADDED AS THE ICON OF Buttons
     private ImageIcon imageProccesor(String source) {

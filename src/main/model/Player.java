@@ -41,6 +41,8 @@ public class Player implements Writable {
         if (this.star < 5) {
             this.star++;
             m1.subCoin(10);
+            EventLog.getInstance().logEvent(new Event("Updated player: "
+                    + this.getName() + ": " + this.getStar()));
             return true;
         } else {
             return false;

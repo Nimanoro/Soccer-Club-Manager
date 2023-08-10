@@ -54,7 +54,6 @@ public class FirstMenu extends JFrame {
         parent.add(button);
         parent.pack();
         parent.setVisible(true);
-
         button.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,8 +66,6 @@ public class FirstMenu extends JFrame {
 
             }
         });
-
-
     }
 
     //MODIFIES: Manager, Player, Team, PredefinedTeam, League, Fixture
@@ -214,6 +211,7 @@ public class FirstMenu extends JFrame {
 
         }
     }
+
 
 }
 

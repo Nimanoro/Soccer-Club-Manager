@@ -54,6 +54,8 @@ public class Team extends Predefinedteams {
             manager.subCoin(100);
             p1.setName(name);
             addPlayer(p1);
+            EventLog.getInstance().logEvent(new Event("Added player: "
+                    + p1.getName() + " to the team"));
             return true;
         } else {
             return false;
