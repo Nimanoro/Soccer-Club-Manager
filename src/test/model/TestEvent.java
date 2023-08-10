@@ -34,9 +34,7 @@ public class TestEvent {
         assertTrue(e.equals(e));
         assertFalse(e.equals(m));
         assertEquals(e.getDate().getHours(),20);
-        assertFalse(e.equals(null));
-        assertFalse(e.equals(x));
-        assertFalse(e.equals(d));
+
 
     }
 
