@@ -9,6 +9,7 @@ public class Player implements Writable {
     private int star;
     private Manager m1;
     private String name;
+    private String imageSrc;
 
     public Player(Manager m,int star) {
         this.star = star;
@@ -21,6 +22,14 @@ public class Player implements Writable {
 
     public void setStar(int star) {
         this.star = star;
+    }
+
+    public void setImageSrc(String src) {
+        this.imageSrc = src;
+    }
+
+    public String getImageSrc() {
+        return imageSrc;
     }
 
     public int getStar() {

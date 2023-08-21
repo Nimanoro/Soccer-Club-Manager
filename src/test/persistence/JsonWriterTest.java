@@ -33,7 +33,7 @@ class JsonWriterTest extends JsonTest {
             Player player = new Player(manager, 2);
             player.setName("amin");
             team.addPlayer(player);
-            Predefinedteams pt = new Predefinedteams("Arsenal");
+            Predefinedteams pt = new Predefinedteams("Arsenal", "data/Teams/Arsenal.png");
             pt.setOverall(2);
             pt.updatePoints(3);
             League league = new League();

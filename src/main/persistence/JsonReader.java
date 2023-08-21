@@ -127,7 +127,8 @@ public class JsonReader {
         Integer overall = preteam.getInt("overall");
         Integer point = preteam.getInt("point");
         String name = preteam.getString("name");
-        Predefinedteams predteam = new Predefinedteams(name);
+        String imgSrc = preteam.getString("img");
+        Predefinedteams predteam = new Predefinedteams(name, imgSrc);
         predteam.setOverall(overall);
         predteam.updatePoints(point);
         fixture.addPreDTeams(predteam);
@@ -164,7 +165,8 @@ public class JsonReader {
         if (!jsonObject.getString("name").equals("Dream Team")) {
             Integer point = jsonObject.getInt("point");
             String name = jsonObject.getString("name");
-            Predefinedteams predteam = new Predefinedteams(name);
+            String imgSrc = jsonObject.getString("img");
+            Predefinedteams predteam = new Predefinedteams(name, imgSrc);
             predteam.updatePoints(point);
             league.addTeam(predteam);
         }

@@ -15,7 +15,7 @@ public class Team extends Predefinedteams {
     private Manager manager;
 
     public Team(Manager m1) {
-        super("Dream Team");
+        super("Dream Team", "data/Teams/DreamTeam.png");
         this.manager = m1;
         this.point = 0;
         this.name = "Dream Team";

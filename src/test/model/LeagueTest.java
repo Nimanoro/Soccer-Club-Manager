@@ -19,11 +19,11 @@ public class LeagueTest {
 
     @BeforeEach
     public void setup() {
-        t1 = new Predefinedteams("AFC");
-        t2 = new Predefinedteams("Milan");
-        t3 = new Predefinedteams("BArcelona");
-        t4 = new Predefinedteams("Real Madrid");
-        t5 = new Predefinedteams("BVB");
+        t1 = new Predefinedteams("AFC", "data/Teams/Arsenal.png");
+        t2 = new Predefinedteams("Milan", "data/Teams/Arsenal.png");
+        t3 = new Predefinedteams("BArcelona", "data/Teams/Arsenal.png");
+        t4 = new Predefinedteams("Real Madrid", "data/Teams/Arsenal.png");
+        t5 = new Predefinedteams("BVB", "data/Teams/Arsenal.png");
         t1.updatePoints(5);
         t2.updatePoints(6);
         t3.updatePoints(7);

@@ -10,7 +10,7 @@ public class PredefinedteamsTest {
 
     @BeforeEach
     public void setup() {
-        t1 = new Predefinedteams("Arsenal");
+        t1 = new Predefinedteams("Arsenal", "data/Teams/Arsenal.png");
     }
 
     @Test

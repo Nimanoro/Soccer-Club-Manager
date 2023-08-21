@@ -83,60 +83,72 @@ public class FirstMenu extends JFrame {
     private static void makePlayers(Manager m) {
         p1 = new Player(m, 1);
         p1.setName("Buffon");
+        p1.setImageSrc("data/Players/Buffon.png");
         team = new Team(m);
         team.addPlayer(p1);
         p2 = new Player(m, 1);
         p2.setName("Sergio Ramos");
+        p2.setImageSrc("data/Players/Ramos.png");
         team.addPlayer(p2);
         p3 = new Player(m, 1);
         p3.setName("Pepe");
+        p3.setImageSrc("data/Players/Pepe.png");
         team.addPlayer(p3);
         p4 = new Player(m, 1);
         p4.setName("Marcelo");
+        p4.setImageSrc("data/Players/Marcelo.png");
         team.addPlayer(p4);
         p5 = new Player(m, 1);
         p5.setName("Philip Lahm");
+        p5.setImageSrc("data/Players/Lahm.png");
         team.addPlayer(p5);
         p6 = new Player(m, 1);
         p6.setName("Toni Kroos");
+        p6.setImageSrc("data/Players/Kroos.png");
+
         team.addPlayer(p6);
         p7 = new Player(m, 1);
         p7.setName("Xavi");
+        p7.setImageSrc("data/Players/Xavi.png");
         team.addPlayer(p7);
         p8 = new Player(m, 1);
         p8.setName("Modric");
+        p8.setImageSrc("data/Players/Modric.png");
         team.addPlayer(p8);
         p9 = new Player(m, 1);
         p9.setName("Messi");
+        p6.setImageSrc("data/Players/Messi.png");
         team.addPlayer(p9);
         p10 = new Player(m, 2);
         p10.setName("Ronaldo");
+        p10.setImageSrc("data/Players/Ronaldo.png");
         team.addPlayer(p10);
         p11 = new Player(m, 1);
         p11.setName("Pele");
+        p11.setImageSrc("data/Players/Pele.png");
         team.addPlayer(p11);
     }
 
     //EFFECTS: Set up the default predefined teams
     //MODIFIES: Predefinedteams
     private static void makePredefinedTeams() {
-        t1 = new Predefinedteams("Arsenal");
+        t1 = new Predefinedteams("Arsenal", "data/Teams/Arsenal.png");
         t1.setOverall(2);
-        t2 = new Predefinedteams("Barcelona");
+        t2 = new Predefinedteams("Barcelona", "data/Teams/Barcelona.png");
         t2.setOverall(1);
-        t3 = new Predefinedteams("Real Madrid");
+        t3 = new Predefinedteams("Real Madrid", "data/Teams/RealMadrid.png");
         t3.setOverall(5);
-        t4 = new Predefinedteams("Bayern");
+        t4 = new Predefinedteams("Bayern", "data/Teams/Bayern.png");
         t4.setOverall(4);
-        t5 = new Predefinedteams("Tottenham");
+        t5 = new Predefinedteams("Tottenham", "data/Teams/Tottenham.png");
         t5.setOverall(3);
-        t6 = new Predefinedteams("Atlanta");
+        t6 = new Predefinedteams("Atlanta", "data/Teams/Atlanta.png");
         t6.setOverall(2);
-        t7 = new Predefinedteams("Malavan FC");
+        t7 = new Predefinedteams("Malavan FC", "data/Teams/Malavan.png");
         t7.setOverall(1);
-        t8 = new Predefinedteams("PSG");
+        t8 = new Predefinedteams("PSG", "data/Teams/PSG.png");
         t8.setOverall(4);
-        t9 = new Predefinedteams("BVB");
+        t9 = new Predefinedteams("BVB", "data/Teams/BVB.png");
         t9.setOverall(2);
 
     }

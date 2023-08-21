@@ -13,6 +13,8 @@ public class TeamPanel extends FirstMenu {
     private JTextField nameField = new JTextField("");
     private JFrame makeMenu = new JFrame();
     private JFrame playerFrame;
+    Color color = new Color(4, 137, 48);
+
 
 
     //MODIFIES: this
@@ -21,8 +23,10 @@ public class TeamPanel extends FirstMenu {
         teamFrame = new JFrame();
         teamFrame.setTitle("Team Menu");
         teamFrame.setPreferredSize(new Dimension(600, 600));
+        teamFrame.setBackground(color);
         JLabel managerLabel = new JLabel(manager.getName() + " coins:"
                 + Integer.toString(manager.getCoin()));
+        managerLabel.setBackground(color);
         managerLabel.setHorizontalAlignment(JLabel.CENTER);
         teamFrame.add(managerLabel, BorderLayout.NORTH);
 
@@ -41,13 +45,18 @@ public class TeamPanel extends FirstMenu {
         // Create the container to hold the buttons
         JPanel buttonPanel = new JPanel(new GridLayout(team.getPlayers().size() + 2, 1, 10, 10));
         // The GridLayout will create a 1x12 grid with 10-pixel horizontal and vertical gaps
-
+        buttonPanel.setBackground(color);
+        buttonPanel.setForeground(color);
         // Add buttons to the panel
         for (int i = 0; i <= team.getPlayers().size() - 1; i++) {
             JButton button = new JButton(team.getPlayers().get(i).getName()
                     + " " + "Stars: " + Integer.toString(team.getPlayers().get(i).getStar()));
+            button.setIcon(imageProccesor(team.getPlayers().get(i).getImageSrc()));
             button.addActionListener(this::actionPerformed);
             button.setActionCommand(Integer.toString(i));
+            button.setBackground(color);
+            button.setBackground(color);
+
             buttonPanel.add(button);
         }
         // Add the panel to the frame's content pane
@@ -191,5 +200,13 @@ public class TeamPanel extends FirstMenu {
             }
 
         }
+    }
+
+    private ImageIcon imageProccesor(String source) {
+        ImageIcon img2 = new ImageIcon(source);
+        Image image2 = img2.getImage();
+        Image newImg2 = image2.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        img2 = new ImageIcon(newImg2);
+        return img2;
     }
 }

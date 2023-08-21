@@ -21,8 +21,8 @@ public class GameTest {
 
     @BeforeEach
     public void setup() {
-        t1 = new Predefinedteams("AFC");
-        t3 = new Predefinedteams("EU");
+        t1 = new Predefinedteams("AFC" , "data/Teams/Arsenal.png");
+        t3 = new Predefinedteams("EU", "data/Teams/Arsenal.png");
         m1 = new Manager();
         t2 = new Team(m1);
         t1.setOverall(4);

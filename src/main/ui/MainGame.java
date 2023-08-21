@@ -178,23 +178,23 @@ public class MainGame {
     //EFFECTS: Set up the default predefined teams
     //MODIFIES: Predefinedteams
     private void makePredefinedTeams() {
-        t1 = new Predefinedteams("Arsenal");
+        t1 = new Predefinedteams("Arsenal", "data/Teams/Arsenal.png");
         t1.setOverall(2);
-        t2 = new Predefinedteams("Barcelona");
+        t2 = new Predefinedteams("Barcelona", "data/Teams/Arsenal.png");
         t2.setOverall(1);
-        t3 = new Predefinedteams("Real Madrid");
+        t3 = new Predefinedteams("Real Madrid", "data/Teams/Arsenal.png");
         t3.setOverall(5);
-        t4 = new Predefinedteams("Bayern");
+        t4 = new Predefinedteams("Bayern", "data/Teams/Arsenal.png");
         t4.setOverall(4);
-        t5 = new Predefinedteams("Tottenham");
+        t5 = new Predefinedteams("Tottenham", "data/Teams/Arsenal.png");
         t5.setOverall(3);
-        t6 = new Predefinedteams("Atlanta");
+        t6 = new Predefinedteams("Atlanta", "data/Teams/Arsenal.png");
         t6.setOverall(2);
-        t7 = new Predefinedteams("Malavan FC");
+        t7 = new Predefinedteams("Malavan FC", "data/Teams/Arsenal.png");
         t7.setOverall(1);
-        t8 = new Predefinedteams("PSG");
+        t8 = new Predefinedteams("PSG", "data/Teams/Arsenal.png");
         t8.setOverall(4);
-        t9 = new Predefinedteams("BVB");
+        t9 = new Predefinedteams("BVB", "data/Teams/Arsenal.png");
         t9.setOverall(2);
 
     }

@@ -19,11 +19,11 @@ public class FixtureTest {
     public void setup() {
         m1 = new Manager();
         t1 = new Team(m1);
-        t2 = new Predefinedteams("AFC");
+        t2 = new Predefinedteams("AFC", "data/Teams/Arsenal.png");
         t2.setOverall(1);
-        t3 = new Predefinedteams("EU");
-        t4 = new Predefinedteams("Milan");
-        t5 = new Predefinedteams("aston Villa");
+        t3 = new Predefinedteams("EU", "data/Teams/Arsenal.png");
+        t4 = new Predefinedteams("Milan", "data/Teams/Arsenal.png");
+        t5 = new Predefinedteams("aston Villa", "data/Teams/Arsenal.png");
         f1 = new Fixture(t1);
     }
 
