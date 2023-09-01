@@ -83,11 +83,10 @@ To run the Sports Management System on your local machine, follow these steps:
 Once the application is running, use the graphical user interface to navigate through the various screens and options. You can start a new game, manage your team, view league standings, save your progress, and load a saved game.
 
 ## Screenshots
-![Main Menu](data/Main.png)
-*Main Menu of the Sports Management System*
-
-![Team Panel](data/Team.png)
-*Team Panel for Player Customization*
+<div style="display: flex; justify-content: space-between;">
+    <img src="data/Main.png" alt="Main Menu" width="45%">
+    <img src="data/Team.png" alt="Team Panel" width="45%">
+</div>
 
 
 ## License
@@ -103,7 +102,6 @@ We would like to acknowledge the following resources and libraries that contribu
 
 ## Author
 This Soccer Club Manager(SMC) project was authored by Nima Norouzi.
-
 
 
 
