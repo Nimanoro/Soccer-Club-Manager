@@ -1,0 +1,22 @@
+{
+    "fixture": {
+        "week": 0,
+        "games": [],
+        "predTeams": [],
+        "team": "model.Team@7bedc48a"
+    },
+    "manager": {
+        "manager name": "nima",
+        "coin": 0
+    },
+    "league": {"teams": []},
+    "team": {
+        "manager": {
+            "manager name": "nima",
+            "coin": 0
+        },
+        "players": [],
+        "name": "Dream Team",
+        "point": 0
+    }
+}

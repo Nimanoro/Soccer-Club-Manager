@@ -1,0 +1,77 @@
+{
+    "fixture": {
+        "week": 0,
+        "games": [[
+            {
+                "name": "Arsenal",
+                "overall": 2,
+                "point": 3
+            },
+            {
+                "manager": {
+                    "manager name": "nima",
+                    "coin": 0
+                },
+                "players": [{
+                    "star": 2,
+                    "name": "amin",
+                    "Manager": {
+                        "manager name": "nima",
+                        "coin": 0
+                    }
+                }],
+                "name": "Dream Team",
+                "point": 0
+            }
+        ]],
+        "predTeams": [{
+            "name": "Arsenal",
+            "overall": 2,
+            "point": 3
+        }],
+        "team": "model.Team@44c03695"
+    },
+    "manager": {
+        "manager name": "nima",
+        "coin": 0
+    },
+    "league": {"teams": [
+        {
+            "manager": {
+                "manager name": "nima",
+                "coin": 0
+            },
+            "players": [{
+                "star": 2,
+                "name": "amin",
+                "Manager": {
+                    "manager name": "nima",
+                    "coin": 0
+                }
+            }],
+            "name": "Dream Team",
+            "point": 0
+        },
+        {
+            "name": "Arsenal",
+            "overall": 2,
+            "point": 3
+        }
+    ]},
+    "team": {
+        "manager": {
+            "manager name": "nima",
+            "coin": 0
+        },
+        "players": [{
+            "star": 2,
+            "name": "amin",
+            "Manager": {
+                "manager name": "nima",
+                "coin": 0
+            }
+        }],
+        "name": "Dream Team",
+        "point": 0
+    }
+}
