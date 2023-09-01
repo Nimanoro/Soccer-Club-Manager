@@ -1,8 +1,8 @@
 # Soccer Club Manager (SCM)
 
-![Logo]([data/logo.png])
-
-
+<div align="center">
+<img src="data/logo.png" alt="Main Menu" width="50%">
+</div>
 
 ## Overview
 
