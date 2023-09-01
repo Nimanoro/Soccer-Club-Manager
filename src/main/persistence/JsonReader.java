@@ -100,6 +100,7 @@ public class JsonReader {
         Integer star = jsonObject.getInt("star");
         String name = jsonObject.getString("name");
         Player player = new Player(team.getManager(),star);
+        player.setImageSrc(jsonObject.getString("img"));
         player.setName(name);
         team.addPlayer(player);
 

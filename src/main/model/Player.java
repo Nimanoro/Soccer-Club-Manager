@@ -68,6 +68,7 @@ public class Player implements Writable {
         json.put("star", star);
         json.put("Manager", m1.toJson());
         json.put("name", name);
+        json.put("img", imageSrc);
         return json;
     }
 }

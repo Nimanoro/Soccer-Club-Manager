@@ -205,7 +205,7 @@ public class TeamPanel extends FirstMenu {
     private ImageIcon imageProccesor(String source) {
         ImageIcon img2 = new ImageIcon(source);
         Image image2 = img2.getImage();
-        Image newImg2 = image2.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        Image newImg2 = image2.getScaledInstance(25, 25,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
         img2 = new ImageIcon(newImg2);
         return img2;
     }
