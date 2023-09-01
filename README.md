@@ -1,6 +1,6 @@
 # Soccer Club Manager (SCM)
 
-![Logo]([Soccer-Club-Manager/data/Soccer.png])
+![Logo]([data/logo.png])
 
 
 
@@ -83,10 +83,10 @@ To run the Sports Management System on your local machine, follow these steps:
 Once the application is running, use the graphical user interface to navigate through the various screens and options. You can start a new game, manage your team, view league standings, save your progress, and load a saved game.
 
 ## Screenshots
-![Main Menu](/images/main_menu.png)
+![Main Menu](data/Main.png)
 *Main Menu of the Sports Management System*
 
-![Team Panel](/images/team_panel.png)
+![Team Panel](data/Team.png)
 *Team Panel for Player Customization*
 
 
