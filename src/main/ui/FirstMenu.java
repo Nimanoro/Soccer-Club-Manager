@@ -117,7 +117,7 @@ public class FirstMenu extends JFrame {
         team.addPlayer(p8);
         p9 = new Player(m, 1);
         p9.setName("Messi");
-        p6.setImageSrc("data/Players/Messi.png");
+        p9.setImageSrc("data/Players/Messi.png");
         team.addPlayer(p9);
         p10 = new Player(m, 2);
         p10.setName("Ronaldo");
