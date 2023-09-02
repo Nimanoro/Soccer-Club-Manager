@@ -17,7 +17,7 @@
 
 All soccer enthusiasts are welcomed to enjoy this game.
 
-**Why is this project of interest to you?**
+**Why is this project of interest to me?**
 
 Based on my interest in soccer and game, I decided to develop this game in order to enable players to
 enjoy a competition against pre-defined opponents in the league.
@@ -58,7 +58,7 @@ Data is persisted using JSON serialization. The project utilizes the JSON format
 
 ## Technical Challenges
 
-During the development of the Sports Management System, we encountered several technical challenges that required careful consideration and problem-solving:
+During the development of the Soccer Club Manager game, I encountered several technical challenges that required careful consideration and problem-solving:
 
 1. **Data Serialization:** Implementing data serialization using JSON proved to be a complex task. Ensuring that all core classes could be properly serialized and deserialized while maintaining data integrity required meticulous design.
 
@@ -71,12 +71,12 @@ During the development of the Sports Management System, we encountered several t
 5. **User Experience:** Striking the right balance between providing users with detailed game information and maintaining a user-friendly interface was an ongoing challenge. Deciding what data to display, where, and when was crucial to providing an enjoyable gaming experience.
 
 ## Getting Started
-To run the Sports Management System on your local machine, follow these steps:
+To run the SMC on your local machine, follow these steps:
 
 1. Clone the project repository from GitHub.
 2. Ensure you have Java and Java Swing installed on your computer.
 3. Compile the Java files using your preferred Java development environment.
-4. Run the compiled application.
+4. Run the FirstMenu Class.
 
 ## Usage
 
